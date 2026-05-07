@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <LangVersion>preview</LangVersion>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="Avalonia" Version="11.3.11" />
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\Minokori.Media.Photoshop.Extensions\Minokori.Media.Photoshop.Extensions.csproj" />
+        <ProjectReference Include="..\Minokori.Media.Photoshop\Minokori.Media.Photoshop.csproj" />
+    </ItemGroup>
+</Project>

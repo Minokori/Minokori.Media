@@ -8,3 +8,5 @@ Console.WriteLine("read complete.");
 Console.WriteLine(psd.GetStructureString());
 
 Console.WriteLine(psd.GetCompleteProperties());
+
+Console.ReadLine();

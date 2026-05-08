@@ -172,12 +172,13 @@ internal static partial class PhotoshopBinaryReaderExtension
             return new(width, height, depth, [.. channels.OrderBy(item => item.Type)]) { Document = binaryReader.Document };
             }
         #endregion
+
         /// <summary>
         /// 根据 resourceID 读取 resource 占用的字节长度 (4的倍数)
         /// </summary>
         /// <param name="resourceID"></param>
         /// <returns></returns>
-        internal long ReadResourceLength(string resourceID)
+        private long ReadResourceLength(string resourceID)
             {
             var length =
                 DoubleTypeKeys.Contains(resourceID) && binaryReader.Version == 2 ? binaryReader.ReadInt64()
@@ -186,7 +187,7 @@ internal static partial class PhotoshopBinaryReaderExtension
             return length.PadToFour();
             }
 
-        internal Tuple<JObject, LinkedLayer[], EmbeddedLayer[]> ReadDocumentResource(long dataLength, int? startPosition = null)
+        private Tuple<JObject, LinkedLayer[], EmbeddedLayer[]> ReadDocumentResource(long dataLength, int? startPosition = null)
             {
             //初始化
             binaryReader.Position = startPosition ?? binaryReader.Position;

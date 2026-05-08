@@ -416,11 +416,18 @@ internal static partial class PhotoshopBinaryReaderExtension
 
         internal JObject ReadPlacedLayerData(long dataLength, long? startPosition = null)
             {
+            // BUG
             GlobalReader.Position = startPosition ?? GlobalReader.Position;
             var endPosition = GlobalReader.Position + dataLength;
             _ = GlobalReader.VerifySignatureIs("soLD");
             _ = GlobalReader.VerifyIntIs(4);
             JObject descriptor = GlobalReader.ReadDescriptor();//StructureReader.ReadDescriptor(GlobalReader);
+            // TODO 权益之计. 后期需要调整
+            if (endPosition - GlobalReader.Position == 2)
+                {
+                GlobalReader.Position = endPosition;
+                }
+
             Debug.Assert(GlobalReader.Position == endPosition);
             return descriptor;
             }

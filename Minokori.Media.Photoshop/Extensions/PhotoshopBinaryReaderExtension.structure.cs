@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Text;
 using System.Text.RegularExpressions;
 using Minokori.Media.Photoshop.Exceptions;
@@ -73,30 +74,15 @@ internal static partial class PhotoshopBinaryReaderExtension
 
         #region 基本数据类型, 返回 JValue
 
-        private JValue ReadDouble()
-            {
-            return new(reader.ReadDouble());
-            }
+        private JValue ReadDouble() => new(reader.ReadDouble());
 
-        private JValue ReadString()
-            {
-            return new(reader.ReadString());
-            }
+        private JValue ReadString() => new(reader.ReadString());
 
-        private JValue ReadInt32()
-            {
-            return new(reader.ReadInt32());
-            }
+        private JValue ReadInt32() => new(reader.ReadInt32());
 
-        private JValue ReadBoolean()
-            {
-            return new(reader.ReadBoolean());
-            }
+        private JValue ReadBoolean() => new(reader.ReadBoolean());
 
-        private JValue ReadInt64()
-            {
-            return new(reader.ReadInt64());
-            }
+        private JValue ReadInt64() => new(reader.ReadInt64());
         #endregion
 
         #region 简单数据类型 (没有嵌套包含其他简单类型), 返回 JObject
@@ -119,15 +105,9 @@ internal static partial class PhotoshopBinaryReaderExtension
                 };
             }
 
-        private JObject ReadClass()
-            {
-            return new() { ["Name"] = reader.ReadString(), ["ClassID"] = reader.ReadAsKey() };
-            }
+        private JObject ReadClass() => new() { ["Name"] = reader.ReadString(), ["ClassID"] = reader.ReadAsKey() };
 
-        private JObject ReadEnumerate()
-            {
-            return new() { ["Type"] = reader.ReadAsKey(), ["Enum"] = reader.ReadAsKey() };
-            }
+        private JObject ReadEnumerate() => new() { ["Type"] = reader.ReadAsKey(), ["Enum"] = reader.ReadAsKey() };
 
         private JObject ReadEnumerateReference()
             {
@@ -140,10 +120,7 @@ internal static partial class PhotoshopBinaryReaderExtension
                 };
             }
 
-        private JObject ReadAlias()
-            {
-            return new() { ["Alias"] = reader.ReadAsAscii(reader.ReadInt32()) };
-            }
+        private JObject ReadAlias() => new() { ["Alias"] = reader.ReadAsAscii(reader.ReadInt32()) };
 
         private JObject ReadOffset()
             {
@@ -190,7 +167,6 @@ internal static partial class PhotoshopBinaryReaderExtension
 
                 return ParseToJson(text);
                 }
-
             }
         #endregion
 

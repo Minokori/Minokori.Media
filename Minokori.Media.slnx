@@ -1,19 +1,18 @@
 <Solution>
-  <Folder Name="/Applications/">
-    <Project Path="Minokori.Media.Console/Minokori.Media.Console.csproj" Id="8be95a4d-2bca-4625-baa8-47e32323f0a1" />
-  </Folder>
   <Folder Name="/Assets/" />
-  <Folder Name="/Libraries/">
-    <Project Path="Minokori.Media.Photoshop.Extensions.Avalonia/Minokori.Media.Photoshop.Extensions.Avalonia.csproj" />
-    <Project Path="Minokori.Media.Photoshop.Extensions/Minokori.Media.Photoshop.Extensions.csproj" />
-    <Project Path="Minokori.Media.Photoshop/Minokori.Media.Photoshop.csproj">
-      <Platform Solution="Release|*" Project="x64" />
-    </Project>
-  </Folder>
   <Folder Name="/Solution Items/">
     <File Path=".editorconfig" />
     <File Path="README.md" />
     <File Path=".gitignore" />
     <File Path="LICENSE" />
   </Folder>
+  <Folder Name="/Tests/">
+    <Project Path="Minokori.Media.Avalonia/Minokori.Media.Avalonia.csproj" Id="b1118fcb-92e0-4f06-a25a-2dc79a1d7bd6" />
+    <Project Path="Minokori.Media.Console/Minokori.Media.Console.csproj" Id="8be95a4d-2bca-4625-baa8-47e32323f0a1" />
+  </Folder>
+  <Project Path="Minokori.Media.Photoshop.Extensions.Avalonia/Minokori.Media.Photoshop.Extensions.Avalonia.csproj" />
+  <Project Path="Minokori.Media.Photoshop.Extensions/Minokori.Media.Photoshop.Extensions.csproj" />
+  <Project Path="Minokori.Media.Photoshop/Minokori.Media.Photoshop.csproj">
+    <Platform Solution="Release|*" Project="x64" />
+  </Project>
 </Solution>

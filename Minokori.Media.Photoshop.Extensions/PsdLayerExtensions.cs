@@ -36,10 +36,37 @@ public static class PsdLayerExtensions
             return buffer;
             }
 
+        /// <summary>
+        /// 混合图层的通道数据，将所有通道的数据合并为一个字节数组。
+        /// </summary>
         public Image<Bgra, byte> MergeChannelsToCVImage()
             {
             var buffer = layer.MergeChannels();
             return new Image<Bgra, byte>(layer.Width, layer.Height) { Bytes = buffer };
+            }
+
+        /// <summary>
+        /// 获得包含图像数据的所有图层的列表，按图层顺序排列。
+        /// </summary>
+        public IPsdLayer[] ImageLayers
+            {
+            get
+                {
+                List<IPsdLayer> layers = [];
+                foreach (var child in layer.Childs)
+                    {
+                    if (child.Childs.Length > 0)
+                        {
+                        layers.AddRange(child.ImageLayers);
+                        }
+                    else
+                        {
+                        layers.Add(child);
+                        }
+                    }
+
+                return [.. layers];
+                }
             }
 
         /// <summary>

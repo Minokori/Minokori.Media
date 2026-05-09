@@ -68,7 +68,7 @@ internal static class PsdUtility
                     "#Pxl" => UnitType.Pixels,
                     "#Pnt" => UnitType.Points,
                     "#Mlm" => UnitType.Millimeters,
-                    _ => throw new NotSupportedException(),
+                    _ => throw new NotSupportedException($"{text} 目前还不支持."),
                     };
             }
         }

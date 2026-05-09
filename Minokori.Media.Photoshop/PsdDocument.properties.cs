@@ -69,6 +69,9 @@ public partial class PsdDocument
 
     bool IPsdLayer.HasMask => FileHeader.NumberOfChannels > 4;
 
+    /// <summary>
+    /// 初始化为空数组，表示未合并图像数据。只有调用了 MergeChannels 方法后才会填充此属性。这样可以避免在未合并图像数据时访问此属性导致的错误。
+    /// </summary>
     public byte[] MergedImage { get; set; } = [];
     #endregion
     }

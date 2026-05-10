@@ -101,7 +101,7 @@ internal static class PsdUtility
             List<PsdLayer> rootLayers = [];
             Dictionary<PsdLayer, List<PsdLayer>> layerToChilds = [];
 
-            foreach (var layer in layers.Reverse())
+            foreach (var layer in ((IEnumerable<PsdLayer>)layers).Reverse())
                 {
                 if (layer.SectionType == SectionType.Divider)
                     {

@@ -22,9 +22,10 @@ public static class CVImageExtension
             {
             Emgu.CV.Structure.Range rowRange = new(left, left + other.Width);
             Emgu.CV.Structure.Range colRange = new(top, top + other.Height);
-            Mat roi = new(self.Mat, rowRange, colRange);
+            Mat roi = new(self.Mat, colRange, rowRange);
             var size = roi.Size;
             // 拆分通道
+            // BUG self 和 other 为什么有的是 (WHC) 有的是 HWC
             var backgroundMat = roi.Split();
             var otherMat = other.Mat.Split();
             // 用于存放各通道计算结果

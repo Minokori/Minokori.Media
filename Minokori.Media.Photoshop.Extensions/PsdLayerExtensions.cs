@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Text;
 using Emgu.CV;
 using Emgu.CV.Structure;
@@ -38,11 +39,13 @@ public static class PsdLayerExtensions
 
         /// <summary>
         /// 混合图层的通道数据，将所有通道的数据合并为一个字节数组。
+        /// shape = (H,W,C)
         /// </summary>
         public Image<Bgra, byte> MergeChannelsToCVImage()
             {
             var buffer = layer.MergeChannels();
-            return new Image<Bgra, byte>(layer.Width, layer.Height) { Bytes = buffer };
+            var cvImage = new Image<Bgra, byte>(layer.Width, layer.Height) { Bytes = buffer };
+            return cvImage;
             }
 
         /// <summary>
@@ -67,6 +70,20 @@ public static class PsdLayerExtensions
 
                 return [.. layers];
                 }
+            }
+
+
+        public Image<Bgra, byte> MergeVisibleChildsToCVImage()
+            {
+            // image是 HWC
+            var image = new Image<Bgra, byte>(layer.Width, layer.Height);
+            foreach (var (sublayer, idx) in layer.ImageLayers.Select((layer, idx) => (layer, idx)).Where(x => x.layer.IsVisible).Reverse())
+                {
+                _ = image.AddImage(sublayer.MergeChannelsToCVImage(), sublayer.Left, sublayer.Top);
+                }
+
+            layer.MergedImage = image.Bytes;
+            return image;
             }
 
         /// <summary>

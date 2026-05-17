@@ -1,0 +1,44 @@
+{
+    "PsdFilePath": "./data/images/psd/依神女苑.psd",
+    "Name": "依神女苑",
+    "AvatarPosition": {
+        "Item1": 254,
+        "Item2": 59
+    },
+    "AvatarSize": {
+        "Item1": 265,
+        "Item2": 265
+    },
+    "TachieSize": null,
+    "TachiePosition": {
+        "Item1": 0,
+        "Item2": 0
+    },
+    "ImpressionColor": "#bf4ddb",
+    "Sabenn": {
+        "Default": [
+            41,
+            51,
+            48,
+            45,
+            3,
+            0
+        ],
+        "Happy": [
+            35,
+            51,
+            48,
+            45,
+            3,
+            0
+        ],
+        "Sad": [
+            36,
+            51,
+            48,
+            45,
+            3,
+            0
+        ]
+    }
+}

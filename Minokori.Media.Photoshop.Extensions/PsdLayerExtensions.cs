@@ -1,16 +1,39 @@
-using System.Diagnostics;
 using System.Text;
 using Emgu.CV;
 using Emgu.CV.Structure;
 using Minokori.Media.Photoshop.Interfaces;
-using Newtonsoft.Json.Linq;
 
 namespace Minokori.Media.Photoshop.Extensions;
 
-public static class PsdLayerExtensions
+public static partial class PsdLayerExtensions
     {
     extension(IPsdLayer layer)
         {
+        /// <summary>
+        /// 获得包含图像数据的所有图层的列表，按图层顺序(从上到下)排列.
+        /// </summary>
+        public IPsdLayer[] ImageLayers
+            {
+            get
+                {
+                List<IPsdLayer> layers = [];
+                foreach (var child in layer.Childs)
+                    {
+                    if (child.Childs.Length > 0)
+                        {
+                        layers.AddRange(child.ImageLayers);
+                        }
+                    else
+                        {
+                        layers.Add(child);
+                        }
+                    }
+
+                return [.. layers];
+                }
+            }
+
+
         /// <summary>
         /// 混合图层的通道数据，将所有通道的数据合并为一个字节数组。
         /// </summary>
@@ -38,8 +61,7 @@ public static class PsdLayerExtensions
             }
 
         /// <summary>
-        /// 混合图层的通道数据，将所有通道的数据合并为一个字节数组。
-        /// shape = (H,W,C)
+        /// 混合图层的通道数据，将所有通道的数据合并为一个 OpenCV 图像.
         /// </summary>
         public Image<Bgra, byte> MergeChannelsToCVImage()
             {
@@ -48,31 +70,17 @@ public static class PsdLayerExtensions
             return cvImage;
             }
 
+
+
         /// <summary>
-        /// 获得包含图像数据的所有图层的列表，按图层顺序排列。
+        /// 将所有可见的子图层的图像数据混合到一个 OpenCV 图像中，按照图层顺序(从上到下)进行 alpha 混合。
         /// </summary>
-        public IPsdLayer[] ImageLayers
-            {
-            get
-                {
-                List<IPsdLayer> layers = [];
-                foreach (var child in layer.Childs)
-                    {
-                    if (child.Childs.Length > 0)
-                        {
-                        layers.AddRange(child.ImageLayers);
-                        }
-                    else
-                        {
-                        layers.Add(child);
-                        }
-                    }
-
-                return [.. layers];
-                }
-            }
-
-
+        /// <returns>
+        /// 拼合后的图像数据.
+        /// </returns>
+        /// <remarks>
+        /// 要访问拼合后的原始图像字节数据, 参照<see cref="PsdLayer.MergedImage"/>, 其格式为 <c>BGRA8888</c>, <b><u>没有</u></b> 预乘 Alpha 通道。
+        /// </remarks>
         public Image<Bgra, byte> MergeVisibleChildsToCVImage()
             {
             // image是 HWC
@@ -111,23 +119,6 @@ public static class PsdLayerExtensions
                 }
 
             return stringBuilder.ToString();
-            }
-        }
-
-    extension(PsdDocument document)
-        {
-        /// <summary>
-        /// 获取文档的所有图层的结构字符串
-        /// </summary>
-        /// <returns></returns>
-        public JObject GetCompleteProperties()
-            {
-            return new()
-                {
-                ["FileHeader"] = document.FileHeader,
-                ["ColorMode"] = document.ColorModeDataSection,
-                ["LayerAndMask"] = document.LayerAndMaskSection,
-                };
             }
         }
     }

@@ -1,7 +1,7 @@
-﻿using System;
+using System;
 using Avalonia;
 
-namespace Minokori.Media.Avalonia;
+namespace Minokori.Media.Demo.Avalonia;
 
 internal class Program
     {

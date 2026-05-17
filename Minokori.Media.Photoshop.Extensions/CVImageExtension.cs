@@ -10,22 +10,21 @@ public static class CVImageExtension
     extension(Image<Bgra, byte> self)
         {
         /// <summary>
-        ///
+        /// 向当前图像添加另一张图像, 以左上角为基准点, 进行 alpha 混合
         /// </summary>
-        /// <param name="other"></param>
-        /// <param name="left"></param>
-        /// <param name="top"></param>
+        /// <param name="other">添加的图像</param>
+        /// <param name="left">左上角的 x 坐标</param>
+        /// <param name="top">左上角的 y 坐标</param>
         /// <exception cref="CvException">
         /// 若在 Psd 文件中, 子图层超过了画布边缘, 会导致报错
         /// </exception>
         public Image<Bgra, byte> AddImage(Image<Bgra, byte> other, int left, int top)
             {
-            Emgu.CV.Structure.Range rowRange = new(left, left + other.Width);
-            Emgu.CV.Structure.Range colRange = new(top, top + other.Height);
-            Mat roi = new(self.Mat, colRange, rowRange);
+            Mat roi = new(self.Mat,
+                new(top, top + other.Height),//row (行), 高
+                new(left, left + other.Width)); //col (列), 宽
             var size = roi.Size;
             // 拆分通道
-            // BUG self 和 other 为什么有的是 (WHC) 有的是 HWC
             var backgroundMat = roi.Split();
             var otherMat = other.Mat.Split();
             // 用于存放各通道计算结果

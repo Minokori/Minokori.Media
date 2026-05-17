@@ -1,0 +1,44 @@
+{
+    "PsdFilePath": "./data/images/psd/依神紫苑.psd",
+    "Name": "依神紫苑",
+    "AvatarPosition": {
+        "Item1": 288,
+        "Item2": 66
+    },
+    "AvatarSize": {
+        "Item1": 265,
+        "Item2": 265
+    },
+    "TachieSize": null,
+    "TachiePosition": {
+        "Item1": 0,
+        "Item2": 0
+    },
+    "ImpressionColor": "#365bc7",
+    "Sabenn": {
+        "Default": [
+            44,
+            9,
+            8,
+            7,
+            3,
+            0
+        ],
+        "Happy": [
+            38,
+            9,
+            8,
+            7,
+            3,
+            0
+        ],
+        "Sad": [
+            43,
+            9,
+            8,
+            7,
+            3,
+            0
+        ]
+    }
+}

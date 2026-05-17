@@ -64,7 +64,6 @@ public partial class PsdDocument
 
     Channel[] IPsdLayer.Channels => ImageDataSection.Channels;
 
-    // TODO This makes MergeChannels on PsdDocument class no opacity
     float IPsdLayer.Opacity => 1.0f;
 
     bool IPsdLayer.HasMask => FileHeader.NumberOfChannels > 4;

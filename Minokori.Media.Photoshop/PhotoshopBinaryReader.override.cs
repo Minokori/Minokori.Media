@@ -1,7 +1,6 @@
 using System.Buffers;
 using System.Buffers.Binary;
 using System.Text;
-
 namespace Minokori.Media.Photoshop;
 
 internal partial class PhotoshopBinaryReader

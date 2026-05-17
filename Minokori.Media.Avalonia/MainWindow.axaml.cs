@@ -1,7 +1,7 @@
 using Avalonia.Controls;
 using Minokori.Media.Photoshop;
 using Minokori.Media.Photoshop.Extensions;
-namespace Minokori.Media.Avalonia;
+namespace Minokori.Media.Demo.Avalonia;
 
 public partial class MainWindow : Window
     {

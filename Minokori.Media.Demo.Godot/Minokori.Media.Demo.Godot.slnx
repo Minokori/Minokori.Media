@@ -1,0 +1,18 @@
+<Solution>
+  <Configurations>
+    <BuildType Name="Debug" />
+    <BuildType Name="ExportDebug" />
+    <BuildType Name="ExportRelease" />
+  </Configurations>
+  <Folder Name="/外部库/">
+    <Project Path="../Minokori.Media/Minokori.Media.Photoshop.Extensions/Minokori.Media.Photoshop.Extensions.csproj">
+      <BuildType Solution="ExportDebug|*" Project="Release" />
+      <BuildType Solution="ExportRelease|*" Project="Release" />
+    </Project>
+    <Project Path="../Minokori.Media/Minokori.Media.Photoshop/Minokori.Media.Photoshop.csproj">
+      <BuildType Solution="ExportDebug|*" Project="Release" />
+      <BuildType Solution="ExportRelease|*" Project="Release" />
+    </Project>
+  </Folder>
+  <Project Path="Minokori.Media.Demo.Godot.csproj" />
+</Solution>
